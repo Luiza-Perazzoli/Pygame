@@ -1,7 +1,12 @@
-from curses import window
-from game import HEIGHT, WIDTH, imagem_peixe
-import pygame
+#from curses import window
 from random import*
+import pygame
+
+imagem_fundo=r"imagem/fundo do mar - Copia.webp"
+imagem_peixe=r"imagem/peixe_amarelo.png"
+imagem_alga=r"imagem/alga.png"
+WIDTH = 700
+HEIGHT = 400
 
 class peixe:
     def __init__(self,vel_x,vel_y,WIDTH,HEIGHT):
@@ -12,7 +17,7 @@ class peixe:
         self.pulando = False
         self.cont = 10
         self.image = pygame.image.load(imagem_peixe).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (10, 10))
+        self.image = pygame.transform.scale(self.image, (110, 70))
     
     def pulo(self):
         if self.pulando:
@@ -25,4 +30,5 @@ class peixe:
             else:
                 self.pulando = False
                 self.cont = 10
+
 

@@ -9,7 +9,8 @@ WIDTH = 700
 HEIGHT = 400
 
 pygame.init()
-
+clock = pygame.time.Clock()
+FPS = 30
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('flappy fish')
@@ -24,16 +25,19 @@ pontuacao = font.render('pontos:', True, (255, 0, 127))
 
 peixes=peixe(0,0,WIDTH,HEIGHT)
 while game:
-    pressed_keys = pygame.key.get_pressed()
+    clock.tick(FPS)
+    peixes.update()
     for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                peixes.pulo()
         if event.type == pygame.QUIT:
             game = False
 
-    peixes.pulo()
     window.fill((173, 216, 230))
     window.blit(image, (0, 0))
     window.blit(pontuacao, (600, 10))
-    window.blit(peixes.image,(peixes.coord_x-110/2,peixes.coord_y-70/2))
+    window.blit(peixes.image,(peixes.rect.x-110/2,peixes.rect.y-70/2))
     
     pygame.display.update() 
 

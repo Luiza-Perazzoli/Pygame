@@ -11,25 +11,24 @@ HEIGHT = 400
 class peixe(pygame.sprite.Sprite):
     def __init__(self,vel_x,vel_y,WIDTH,HEIGHT):
         pygame.sprite.Sprite.__init__(self)
-        self.vel_x=vel_x
-        self.vel_y=vel_y
-        self.coord_x=WIDTH/2
-        self.coord_y=HEIGHT/2
-        self.pulando = False
-        self.cont = 10
+
         self.image = pygame.image.load(imagem_peixe).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (110, 70))
+        self.image = pygame.transform.scale(self.image, (80, 40))
+        self.rect = self.image.get_rect()
+        self.rect.x = WIDTH/2
+        self.rect.y = HEIGHT/2
+        self.speedx = 0
+        self.speedy = 0
+        self.count = 2
+
+    def update(self):
+        self.speedy += self.count
+        self.rect.y += self.speedy
+
+        if self.rect.bottom > HEIGHT:
+            self.rect.bottom = HEIGHT
+        if self.rect.y < 40:
+            self.rect.y = 40
     
     def pulo(self):
-        if self.pulando:
-            if self.cont >= -10:
-                neg = 1
-                if self.cont < 0:
-                    neg = -1
-                self.coord_y -= self.cont**2 * 0.1 * neg
-                self.cont -= 1
-            else:
-                self.pulando = False
-                self.cont = 10
-
-
+        self.speedy = -20

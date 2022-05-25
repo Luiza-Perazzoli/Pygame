@@ -8,8 +8,9 @@ imagem_alga=r"imagem/alga.png"
 WIDTH = 700
 HEIGHT = 400
 
-class peixe:
+class peixe(pygame.sprite.Sprite):
     def __init__(self,vel_x,vel_y,WIDTH,HEIGHT):
+        pygame.sprite.Sprite.__init__(self)
         self.vel_x=vel_x
         self.vel_y=vel_y
         self.coord_x=WIDTH/2

@@ -1,8 +1,9 @@
 import pygame
 from random import*
-from sala import peixe
+from sala import peixe, fundo, fundo2
 
 imagem_fundo=r"imagem/fundo do mar - Copia.webp"
+imagem_fundo2= r"imagem/fundo do mar2.webp"
 imagem_peixe=r"imagem/peixe_amarelo.png"
 imagem_alga=r"imagem/alga.png"
 WIDTH = 700
@@ -17,15 +18,17 @@ pygame.display.set_caption('flappy fish')
 
 game = True
 
-image = pygame.image.load(imagem_fundo).convert()
-image = pygame.transform.scale(image, (WIDTH, HEIGHT)) 
-
 font = pygame.font.SysFont("Times", 20)
 pontuacao = font.render('pontos:', True, (255, 0, 127))
 
 peixes=peixe(0,0,WIDTH,HEIGHT)
+classe_fundo= fundo(WIDTH, HEIGHT)
+classe_fundo2= fundo2(WIDTH, HEIGHT)
+
 while game:
     clock.tick(FPS)
+    classe_fundo.update()
+    classe_fundo2.update()
     peixes.update()
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
@@ -35,7 +38,8 @@ while game:
             game = False
 
     window.fill((173, 216, 230))
-    window.blit(image, (0, 0))
+    window.blit(classe_fundo.image, (classe_fundo.rect.x, classe_fundo.rect.y))
+    window.blit(classe_fundo2.image, (classe_fundo2.rect.x, classe_fundo2.rect.y))
     window.blit(pontuacao, (600, 10))
     window.blit(peixes.image,(peixes.rect.x-110/2,peixes.rect.y-70/2))
     

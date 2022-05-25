@@ -3,6 +3,7 @@ from random import*
 import pygame
 
 imagem_fundo=r"imagem/fundo do mar - Copia.webp"
+imagem_fundo2= r"imagem/fundo do mar2.webp"
 imagem_peixe=r"imagem/peixe_amarelo.png"
 imagem_alga=r"imagem/alga.png"
 WIDTH = 700
@@ -32,3 +33,34 @@ class peixe(pygame.sprite.Sprite):
     
     def pulo(self):
         self.speedy = -20
+       
+
+class fundo(pygame.sprite.Sprite):
+    def __init__(self,WIDTH,HEIGHT):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load(imagem_fundo).convert()
+        self.image = pygame.transform.scale(self.image, (WIDTH, HEIGHT))
+        self.rect = self.image.get_rect()
+        self.rect.x = 0
+        self.rect.y = 0
+        self.speedx = -10
+        self.speedy = 0
+
+    def update(self):
+        self.rect.x += self.speedx
+ 
+class fundo2(pygame.sprite.Sprite):
+    def __init__(self,WIDTH,HEIGHT):
+            pygame.sprite.Sprite.__init__(self)
+            self.image = pygame.image.load(imagem_fundo2).convert()
+            self.image = pygame.transform.scale(self.image, (WIDTH, HEIGHT))
+            self.rect = self.image.get_rect()
+            self.rect.x = WIDTH
+            self.rect.y = 0
+            self.speedx = -10
+            self.speedy = 0
+
+    def update(self):
+        self.rect.x += self.speedx
+        if self.rect.x == 0:
+            self.rect.x = WIDTH

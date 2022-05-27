@@ -5,14 +5,16 @@ from sala import peixe, fundo, fundo2, alga
 imagem_fundo=r"imagem/fundo do mar - Copia.webp"
 imagem_fundo2= r"imagem/fundo do mar2.webp"
 imagem_peixe=r"imagem/peixe_amarelo.png"
-imagem_alga=r"imagem/alga - Copia.png"
+imagem_alga=r"imagem\alga-png-real.png"
 
 WIDTH = 700
 HEIGHT = 400
-
+ 
 pygame.init()
 clock = pygame.time.Clock()
 FPS = 30
+
+all_algas = pygame.sprite.Group()
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('flappy fish')
@@ -29,7 +31,7 @@ algas= alga(WIDTH, HEIGHT)
 
 while game:
     clock.tick(FPS)
-    classe_fundo.update()
+    classe_fundo.update()   
     classe_fundo2.update()
     peixes.update()
     algas.update()

@@ -6,7 +6,7 @@ import pygame
 imagem_fundo=r"imagem/fundo do mar - Copia.webp"
 imagem_fundo2= r"imagem/fundo do mar2.webp"
 imagem_peixe=r"imagem/peixe_amarelo.png"
-imagem_alga=r"imagem/alga - Copia.png"
+imagem_alga=r"imagem\alga-png-real.png"
 WIDTH = 700
 HEIGHT = 400
 
@@ -14,11 +14,13 @@ class alga(pygame.sprite.Sprite):
     def __init__(self,WIDTH,HEIGHT):
         pygame.sprite.Sprite.__init__(self)
 
+        self.alturas_alga = [100,150,200,250,300]
+        self.escala_y = self.alturas_alga[randint(0,4)]
         self.image = pygame.image.load(imagem_alga).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (60, 200))
+        self.image = pygame.transform.scale(self.image, (60, self.escala_y))
         self.rect = self.image.get_rect()
         self.rect.x = WIDTH
-        self.rect.y = HEIGHT-200
+        self.rect.y = HEIGHT-self.escala_y
         self.speedx = -10
         self.speedy = 0
 

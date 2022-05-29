@@ -63,9 +63,12 @@ class fundo(pygame.sprite.Sprite):
         self.rect.y = 0
         self.speedx = -10
         self.speedy = 0
+        self.largura= WIDTH
 
     def update(self):
         self.rect.x += self.speedx
+        if self.rect.x + self.largura == 0:
+            self.rect.x= self.largura
  
 class fundo2(pygame.sprite.Sprite):
     def __init__(self,WIDTH,HEIGHT):
@@ -80,5 +83,5 @@ class fundo2(pygame.sprite.Sprite):
 
     def update(self):
         self.rect.x += self.speedx
-        if self.rect.x == 0:
+        if self.rect.x + WIDTH == 0:
             self.rect.x = WIDTH

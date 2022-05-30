@@ -29,8 +29,8 @@ class alga(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         if self.rect.left < 0:
             self.rect.x = WIDTH
-            self.alturas_alga = [100,150,200,250,300]
-            self.escala_y = self.alturas_alga[randint(0,4)]
+            self.alturas_alga = [100,150,200,250]
+            self.escala_y = self.alturas_alga[randint(0,3)]
             self.rect.y = HEIGHT-self.escala_y
             self.image = pygame.transform.scale(self.image, (60, self.escala_y))
             self.speedx = -10

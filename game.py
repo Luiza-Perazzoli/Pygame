@@ -37,7 +37,7 @@ while game:
     classe_fundo2.update()
     peixes.update()
     algas.update()
-    algas_invertidas.update(algas)
+    algas_invertidas.update(algas) 
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:

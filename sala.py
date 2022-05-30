@@ -6,7 +6,8 @@ import pygame
 imagem_fundo=r"imagem/fundo do mar - Copia.webp"
 imagem_fundo2= r"imagem/fundo do mar2.webp"
 imagem_peixe=r"imagem/peixe_amarelo.png"
-imagem_alga=r"imagem\alga-png-real.png"
+imagem_alga=r"imagem/alga-png-real.png"
+imagem_alga_invertida= r"imagem/alga-png-real-invertida.png"
 WIDTH = 700
 HEIGHT = 400
 
@@ -35,6 +36,27 @@ class alga(pygame.sprite.Sprite):
             self.speedx = -10
             self.speedy = 0
 
+class alga_invertida(pygame.sprite.Sprite):
+    def __init__(self,WIDTH,HEIGHT, algas):
+        pygame.sprite.Sprite.__init__(self)
+        self.distancia= 110
+        self.escala_y_invertida= HEIGHT - algas.escala_y - self.distancia
+        self.image = pygame.image.load(imagem_alga_invertida).convert_alpha()
+        self.image = pygame.transform.scale(self.image, (60, self.escala_y_invertida))
+        self.rect = self.image.get_rect()
+        self.rect.x = WIDTH
+        self.rect.y =  0
+        self.speedx = -10
+        self.speedy = 0
+
+    def update(self, algas):
+        self.rect.x += self.speedx
+        if self.rect.left < 0:
+            self.rect.x = WIDTH
+            self.escala_y_invertida= HEIGHT - algas.escala_y - self.distancia
+            self.image = pygame.transform.scale(self.image, (60, self.escala_y_invertida))
+            self.speedx = -10
+            self.speedy = 0
 
 class peixe(pygame.sprite.Sprite):
     def __init__(self,vel_x,vel_y,WIDTH,HEIGHT):

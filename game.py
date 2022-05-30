@@ -66,7 +66,10 @@ while game:
     # window.blit(algas_invertidas.image, (algas_invertidas.rect.x, algas_invertidas.rect.y))
     window.blit(pontuacao, (600, 10))
     window.blit(peixes.image,(peixes.rect.x-110/2,peixes.rect.y-70/2))
-    
+    hits = pygame.sprite.spritecollide(peixes, all_algas, False)
+    if hits != []:
+        print ('perdeu')
+
     pygame.display.update() 
 
 pygame.quit()  

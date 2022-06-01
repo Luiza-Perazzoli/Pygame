@@ -5,7 +5,7 @@ from fim import tela_final
 pygame.init()
 pygame.mixer.init()
 WIDTH = 800
-HEIGHT = 400
+HEIGHT = 600
 
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Navinha')

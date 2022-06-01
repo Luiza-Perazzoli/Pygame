@@ -9,7 +9,7 @@ imagem_peixe=r"imagem/peixe_amarelo.png"
 imagem_alga=r"imagem/alga-png-real.png"
 imagem_alga_invertida= r"imagem/alga-png-real-invertida.png"
 WIDTH = 800
-HEIGHT = 400
+HEIGHT = 600
 
 class alga(pygame.sprite.Sprite):
     def __init__(self,WIDTH,HEIGHT,numero):
@@ -19,6 +19,7 @@ class alga(pygame.sprite.Sprite):
         self.escala_y = self.alturas_alga[randint(0,3)]
         self.image = pygame.image.load(imagem_alga).convert_alpha()
         self.image = pygame.transform.scale(self.image, (60, self.escala_y))
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = WIDTH + 200*numero
         self.rect.y = HEIGHT-self.escala_y
@@ -39,10 +40,11 @@ class alga(pygame.sprite.Sprite):
 class alga_invertida(pygame.sprite.Sprite):
     def __init__(self,WIDTH,HEIGHT, algas):
         pygame.sprite.Sprite.__init__(self)
-        self.distancia= 110
+        self.distancia= 300
         self.escala_y_invertida= HEIGHT - algas.escala_y - self.distancia
         self.image = pygame.image.load(imagem_alga_invertida).convert_alpha()
         self.image = pygame.transform.scale(self.image, (60, self.escala_y_invertida))
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = algas.rect.x
         self.rect.y = 0
@@ -64,13 +66,14 @@ class peixe(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(imagem_peixe).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (80, 40))
+        self.image = pygame.transform.scale(self.image, (40, 20))
+        self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = WIDTH/2
         self.rect.y = HEIGHT/2
         self.speedx = 0
         self.speedy = 0
-        self.count = 2
+        self.count = 1
 
     def update(self):
         self.speedy += self.count
@@ -82,7 +85,7 @@ class peixe(pygame.sprite.Sprite):
             self.rect.y = 40
     
     def pulo(self):
-        self.speedy = -20
+        self.speedy = -10
        
 
 class fundo(pygame.sprite.Sprite):

@@ -9,7 +9,7 @@ def jogo(window):
     imagem_alga_invertida= r"imagem/alga-png-real-invertida.png"
 
     WIDTH = 800
-    HEIGHT = 400
+    HEIGHT = 600
     
     clock = pygame.time.Clock()
     FPS = 30
@@ -55,23 +55,22 @@ def jogo(window):
         classe_fundo2.update()
         peixes.update()
         all_algas.update()
-        # algas_invertidas.update(alga1) 
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                     peixes.pulo()
             if event.type == pygame.QUIT:
                 game = False
+                return "QUIT"
 
         window.fill((173, 216, 230))
         window.blit(classe_fundo.image, (classe_fundo.rect.x, classe_fundo.rect.y))
         window.blit(classe_fundo2.image, (classe_fundo2.rect.x, classe_fundo2.rect.y))
         all_algas.draw(window)
-        # window.blit(algas_invertidas.image, (algas_invertidas.rect.x, algas_invertidas.rect.y))
         window.blit(pontuacao, (700, 10))
         window.blit(vidas_texto, (700, 30))
-        window.blit(peixes.image,(peixes.rect.x-110/2,peixes.rect.y-70/2))
-        hits = pygame.sprite.spritecollide(peixes, all_algas, False)
+        window.blit(peixes.image,(peixes.rect.x,peixes.rect.y))
+        hits = pygame.sprite.spritecollide(peixes, all_algas, False, pygame.sprite.collide_mask)
         if hits != [] and pygame.time.get_ticks() > colisao_anterior + 500:
             colisao_anterior = pygame.time.get_ticks()
             vidas -= 1

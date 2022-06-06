@@ -75,7 +75,7 @@ def jogo(window):
             colisao_anterior = pygame.time.get_ticks()
             vidas -= 1
             hits = []
-            if vidas < 0:
+            if vidas == 0:
                 game = False
                 return "QUIT"
 

@@ -8,10 +8,10 @@ def tela_final(window):
 
     image_1 = pygame.image.load(imagem_fundo).convert()
     image_2 = pygame.image.load(imagem_peixe_triste).convert_alpha()
-    image_2 = pygame.transform.scale(image_2,(100,150))
+    image_2 = pygame.transform.scale(image_2,(300,250))
 
-    font = pygame.font.SysFont(None, 48)
-    text = font.render('VOCÊ PERDEU', True, (0, 0, 255))
+    font = pygame.font.SysFont('Times', 48)
+    text = font.render('VOCÊ PERDEU :(', True, (0, 0, 255))
     pygame.display.set_caption('flappy fish')
     game = True
 
@@ -23,7 +23,7 @@ def tela_final(window):
         window.blit(image_1, (0,0))
         window.blit(image_2, (WIDTH/2, HEIGHT/2))
 
-        window.blit(text, (WIDTH/2, HEIGHT/2))
+        window.blit(text, (230, 200))
 
         pygame.display.update()  
 

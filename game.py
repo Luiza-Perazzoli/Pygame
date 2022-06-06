@@ -22,6 +22,7 @@ def jogo(window):
 
     vidas=3
     pontos=0
+    gap = 0
 
     font = pygame.font.SysFont("Times", 20)
 
@@ -45,7 +46,7 @@ def jogo(window):
     all_algas.add(algas_invertidas3)
     algas_invertidas4= alga_invertida(WIDTH, HEIGHT, alga4)
     all_algas.add(algas_invertidas4)
-    colisao_anterior = -1000
+    colisao_anterior = 0
 
     while game:
         pontuacao = font.render('pontos:{}'.format(pontos), True, (255, 0, 127))
@@ -74,10 +75,27 @@ def jogo(window):
         if hits != [] and pygame.time.get_ticks() > colisao_anterior + 500:
             colisao_anterior = pygame.time.get_ticks()
             vidas -= 1
+            pontos-= 1
             hits = []
             if vidas == 0:
                 game = False
                 return "QUIT"
+        if peixes.rect.left == alga1.rect.x + 60:
+            pontos+= 1
 
+        if peixes.rect.left == alga2.rect.x + 60:
+            pontos+= 1
+
+        if peixes.rect.left == alga3.rect.x + 60:
+            pontos+= 1
+        
+        if peixes.rect.left == alga4.rect.x + 60:
+            pontos+= 1
+        '''     
+        if pygame.time.get_ticks() > gap + 4000**():
+            pontos += 1
+            gap = pygame.time.get_ticks()/2
+
+'''
         pygame.display.update() 
 

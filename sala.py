@@ -16,13 +16,14 @@ class alga(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.alturas_alga = [100,150,200,250]
-        self.escala_y = self.alturas_alga[randint(0,3)]
+        self.random = randint(0,3)
+        self.escala_y = self.alturas_alga[self.random]
         self.image = pygame.image.load(imagem_alga).convert_alpha()
         self.image = pygame.transform.scale(self.image, (60, self.escala_y))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = WIDTH + 200*numero
-        self.rect.y = HEIGHT-self.escala_y
+        self.rect.y = HEIGHT-self.escala_y+30
         self.speedx = -10
         self.speedy = 0
 
@@ -31,8 +32,8 @@ class alga(pygame.sprite.Sprite):
         if self.rect.left < 0:
             self.rect.x = WIDTH
             self.alturas_alga = [100,150,200,250]
-            self.escala_y = self.alturas_alga[randint(0,3)]
-            self.rect.y = HEIGHT-self.escala_y
+            self.escala_y = self.alturas_alga[self.random]
+            self.rect.y = HEIGHT-self.escala_y+30
             self.image = pygame.transform.scale(self.image, (60, self.escala_y))
             self.speedx = -10
             self.speedy = 0
@@ -40,14 +41,14 @@ class alga(pygame.sprite.Sprite):
 class alga_invertida(pygame.sprite.Sprite):
     def __init__(self,WIDTH,HEIGHT, algas):
         pygame.sprite.Sprite.__init__(self)
-        self.distancia= 300
+        self.distancia= 200
         self.escala_y_invertida= HEIGHT - algas.escala_y - self.distancia
         self.image = pygame.image.load(imagem_alga_invertida).convert_alpha()
         self.image = pygame.transform.scale(self.image, (60, self.escala_y_invertida))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = algas.rect.x
-        self.rect.y = 0
+        self.rect.y = -30
         self.speedx = -10
         self.speedy = 0
         self.outra_alga=algas
@@ -66,7 +67,7 @@ class peixe(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(imagem_peixe).convert_alpha()
-        self.image = pygame.transform.scale(self.image, (40, 20))
+        self.image = pygame.transform.scale(self.image, (60, 30))
         self.mask = pygame.mask.from_surface(self.image)
         self.rect = self.image.get_rect()
         self.rect.x = WIDTH/2
@@ -120,3 +121,4 @@ class fundo2(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         if self.rect.x + WIDTH == 0:
             self.rect.x = WIDTH
+

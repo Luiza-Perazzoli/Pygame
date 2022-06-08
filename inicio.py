@@ -2,7 +2,7 @@ import pygame
 from sala import HEIGHT, WIDTH
 
 def tela_inicial(window):
-    imagem_fundo=r"imagem/inicio.jpg"
+    imagem_fundo=r"imagem/WhatsApp Image 2022-06-08 at 19.50.32.jpeg"
 
     image_1 = pygame.image.load(imagem_fundo).convert()
     image_1 = pygame.transform.scale(image_1,(WIDTH,HEIGHT))

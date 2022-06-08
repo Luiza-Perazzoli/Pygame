@@ -91,11 +91,6 @@ def jogo(window):
         
         if peixes.rect.left == alga4.rect.x + 60:
             pontos+= 1
-        '''     
-        if pygame.time.get_ticks() > gap + 4000**():
-            pontos += 1
-            gap = pygame.time.get_ticks()/2
 
-'''
         pygame.display.update() 
 

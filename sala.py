@@ -30,8 +30,8 @@ class alga(pygame.sprite.Sprite):
     def update(self):
         self.rect.x += self.speedx
         if self.rect.left < 0:
+            self.random = randint(0,3)
             self.rect.x = WIDTH
-            self.alturas_alga = [150,100,250,200]
             self.escala_y = self.alturas_alga[self.random]
             self.rect.y = HEIGHT-self.escala_y+30
             self.image = pygame.transform.scale(self.image, (60, self.escala_y))
@@ -41,7 +41,7 @@ class alga(pygame.sprite.Sprite):
 class alga_invertida(pygame.sprite.Sprite):
     def __init__(self,WIDTH,HEIGHT, algas):
         pygame.sprite.Sprite.__init__(self)
-        self.distancia= 100
+        self.distancia= 200
         self.escala_y_invertida= HEIGHT - algas.escala_y - self.distancia
         self.image = pygame.image.load(imagem_alga_invertida).convert_alpha()
         self.image = pygame.transform.scale(self.image, (60, self.escala_y_invertida))

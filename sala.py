@@ -17,8 +17,8 @@ class alga(pygame.sprite.Sprite):
     def __init__(self,WIDTH,HEIGHT,numero):
         pygame.sprite.Sprite.__init__(self)
         #soretia tamanho da alga em escala y, para ter vários tamanhos diferentes
-        self.alturas_alga = [150,100,250,200]
-        self.random = randint(0,3)
+        self.alturas_alga = [70,150,100, 170, 250,200, 210, 230, 270, 300, 330]
+        self.random = randint(0,(len(self.alturas_alga)-1))
         self.escala_y = self.alturas_alga[self.random]
         #faz load da imagem do png e define seu tamanho
         self.image = pygame.image.load(imagem_alga).convert_alpha()
@@ -37,10 +37,8 @@ class alga(pygame.sprite.Sprite):
         self.rect.x += self.speedx
         if self.rect.left < 0:
             self.rect.x = WIDTH
-            self.escala_y = self.alturas_alga[self.random]
-            self.random = randint(0,3)
-            self.rect.y = HEIGHT-self.escala_y+30
             self.image = pygame.transform.scale(self.image, (60, self.escala_y))
+            self.rect.y = HEIGHT-self.escala_y+30
             self.speedx = -10
             self.speedy = 0
 #classe da laga de cima 
